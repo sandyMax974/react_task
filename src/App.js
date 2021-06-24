@@ -1,12 +1,13 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Container } from "react-bootstrap";
 import TilesBoard from "./Containers/TilesBoard";
 
 function App() {
   return (
-    <div>
+    <Container>
       <TilesBoard />
-    </div>
+    </Container>
   );
 }
 

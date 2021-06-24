@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TilesDataService from "../Services/TilesData.service";
-import { Card } from "react-bootstrap";
+import Tile from "../Components/Tile";
+import { Container, Row, Col } from "react-bootstrap";
 
 const TilesBoard = () => {
   const [tiles, setTiles] = useState([]);
@@ -18,18 +19,14 @@ const TilesBoard = () => {
       <h1>Tile Board</h1>
       {tiles.map((tile, index) => {
         return (
-          <Card style={{ width: "50rem" }} key={index}>
-            <Card.Header>
-              Tile #{tile.url[tile.url.length - 1]} | Status: {tile.status}
-            </Card.Header>
-            <Card.Body>
-              <Card.Text>
-                This is where the caruossel with the tasks will be
-              </Card.Text>
-              {/* <Button variant="primary">Go somewhere</Button> */}
-            </Card.Body>
-            <Card.Footer className="text-muted">{tile.launchDate}</Card.Footer>
-          </Card>
+          <div key={index}>
+            <Tile
+              tileUrl={tile.url}
+              tileStatus={tile.status}
+              tileLaunchDate={tile.launchDate}
+            />
+            <hr />
+          </div>
         );
       })}
     </div>
