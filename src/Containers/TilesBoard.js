@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import TilesDataService from "../Services/TilesData.service";
 import Tile from "../Components/Tile";
-import { Container, Row, Col } from "react-bootstrap";
+import AddTileModal from "../Components/AddTileModal";
+import {} from "react-bootstrap";
 
 const TilesBoard = () => {
   const [tiles, setTiles] = useState([]);
@@ -17,6 +18,7 @@ const TilesBoard = () => {
   return (
     <div>
       <h1>Tile Board</h1>
+      <AddTileModal />
       {tiles.map((tile, index) => {
         return (
           <div key={index}>
