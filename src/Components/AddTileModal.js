@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import TileForm from "./TileForm";
 
 const AddTileModal = () => {
   const [show, setShow] = useState(false);
@@ -17,14 +18,16 @@ const AddTileModal = () => {
         <Modal.Header closeButton>
           <Modal.Title>Enter new tile details</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{/* <TileForm/> */}</Modal.Body>
+        <Modal.Body>
+          <TileForm />
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          {/* <Button variant="primary" onClick={handleClose}>
             Save Changes
-          </Button>
+          </Button> */}
         </Modal.Footer>
       </Modal>
     </>

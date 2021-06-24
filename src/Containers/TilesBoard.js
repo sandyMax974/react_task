@@ -17,8 +17,13 @@ const TilesBoard = () => {
 
   return (
     <div>
-      <h1>Tile Board</h1>
-      <AddTileModal />
+      <h1>
+        Tile Board
+        <span style={{ float: "right" }}>
+          <AddTileModal />
+        </span>
+      </h1>
+      <hr />
       {tiles.map((tile, index) => {
         return (
           <div key={index}>
