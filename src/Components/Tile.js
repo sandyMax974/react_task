@@ -16,7 +16,6 @@ const Tile = ({ setTiles, tiles, tileId, tileStatus, tileLaunchDate }) => {
         </Card.Text>
       </Card.Body>
       <Card.Footer className="text-muted">
-        {/* <Button variant="primary">Update</Button>{" "} */}
         <UpdateTileModal  tileId={tileId} tiles={tiles} setTiles={setTiles}/>{" "}
         <DeleteTileModal tileId={tileId} tiles={tiles} setTiles={setTiles}/>
       </Card.Footer>

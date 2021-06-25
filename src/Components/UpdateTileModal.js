@@ -1,22 +1,26 @@
 import React, { useState } from 'react'
 import { Modal, Button } from "react-bootstrap";
 import TileUpdateForm from "./TileUpdateForm"
-// import TilesDataService from "../Services/TilesData.service";
+import TilesDataService from "../Services/TilesData.service";
 
 const UpdateTileModal = ({tileId}) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // const handleShow = () => setShow(true);
 
-  // const handleShow = (id) => {    
-  //   const getTileData = async (id) => {
-  //     const tileDataFromDatabase = await TilesDataService.getTile(id);
-  //     console.log(tileDataFromDatabase)
-  //   };
-  //   setShow(true);
-  //   getTileData();
-  // }
+  const [date, setDate] = useState("")
+  const [status, setStatus] = useState("")
+
+const handleShow = () => {
+  const getTileData = async (id) => {
+    const tileData = await TilesDataService.getTile(id);
+    setDate(tileData.data.launchDate);
+    setStatus(tileData.data.status);
+  }
+  setShow(true);
+  getTileData(tileId);
+}
 
   return (
     <>
@@ -29,7 +33,7 @@ const UpdateTileModal = ({tileId}) => {
         <Modal.Title>Update tile details</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <TileUpdateForm tileId={tileId}/>
+        <TileUpdateForm tileId={tileId} date={date} status={status}/>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
