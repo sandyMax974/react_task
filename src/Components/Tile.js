@@ -1,11 +1,11 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 
-const Tile = ({ tileUrl, tileStatus, tileLaunchDate }) => {
+const Tile = ({ tileId, tileStatus, tileLaunchDate }) => {
   return (
     <Card>
       <Card.Header>
-        Tile #{tileUrl[tileUrl.length - 1]} | Status: {tileStatus} |{" "}
+        Tile #{tileId} | Status: {tileStatus} |{" "}
         {tileLaunchDate}
       </Card.Header>
       <Card.Body>
@@ -16,6 +16,7 @@ const Tile = ({ tileUrl, tileStatus, tileLaunchDate }) => {
       <Card.Footer className="text-muted">
         <Button variant="primary">Update</Button>{" "}
         <Button variant="primary">Delete</Button>
+        {/* <DeleteTileModal /> */}
       </Card.Footer>
     </Card>
   );

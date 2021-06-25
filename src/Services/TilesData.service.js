@@ -15,6 +15,15 @@ class TilesDataService {
   getAllTiles() {
     return axios.get(TILES_API);
   }
+
+  getTiles(status) {
+    
+  }
+
+  delete(id) {
+    return axios.delete(TILES_API + `/${id}`);
+  }
+
 }
 
 export default new TilesDataService();

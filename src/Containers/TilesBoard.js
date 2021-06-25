@@ -28,7 +28,7 @@ const TilesBoard = () => {
         return (
           <div key={index}>
             <Tile
-              tileUrl={tile.url}
+              tileId={tile.id}
               tileStatus={tile.status}
               tileLaunchDate={tile.launchDate}
             />
