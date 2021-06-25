@@ -1,5 +1,6 @@
 import React from "react";
 import DeleteTileModal from "./DeleteTileModal"
+import UpdateTileModal from "./UpdateTileModal";
 import { Card, Button } from "react-bootstrap";
 
 const Tile = ({ setTiles, tiles, tileId, tileStatus, tileLaunchDate }) => {
@@ -15,8 +16,9 @@ const Tile = ({ setTiles, tiles, tileId, tileStatus, tileLaunchDate }) => {
         </Card.Text>
       </Card.Body>
       <Card.Footer className="text-muted">
-        <Button variant="primary">Update</Button>{" "}
-        <DeleteTileModal tileId={tileId} tiles={tiles} settiles={setTiles}/>
+        {/* <Button variant="primary">Update</Button>{" "} */}
+        <UpdateTileModal  tileId={tileId} tiles={tiles} setTiles={setTiles}/>{" "}
+        <DeleteTileModal tileId={tileId} tiles={tiles} setTiles={setTiles}/>
       </Card.Footer>
     </Card>
   );

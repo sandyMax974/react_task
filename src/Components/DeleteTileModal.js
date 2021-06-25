@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import { Modal, Button } from "react-bootstrap";
 import TilesDataService from '../Services/TilesData.service';
-import TileBoard from "../Containers/TilesBoard"
-import App from "../App"
-import ReactDOM from "react-dom";
 
 const DeleteTileModal = ({ tiles, setTiles, tileId }) => {
   const [show, setShow] = useState(false);
@@ -14,8 +11,7 @@ const DeleteTileModal = ({ tiles, setTiles, tileId }) => {
   const handleDeletion = async (id) => {
     await TilesDataService.delete(id)
     setShow(false);
-    // setTiles(tiles.filter((tile) => tile.id !== tileId))
-    setState()
+    setTiles(tiles.filter((tile) => tile.id !== tileId))
   }
 
   return (

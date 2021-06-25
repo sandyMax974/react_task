@@ -33,12 +33,12 @@ class TileForm extends React.Component {
       <Form onSubmit={this.handleSubmit}>
         <Form.Group>
           <Form.Label>Launch Date</Form.Label>
-          <Form.Control name="date"type="date" onChange={this.handleInputChange} />
+          <Form.Control name="date"type="date" value={this.date} onChange={this.handleInputChange} />
         </Form.Group>
 
       <Form.Group>
         <Form.Label>Status</Form.Label>
-        <Form.Control name="status" as="select" onChange={this.handleInputChange} >
+        <Form.Control name="status" as="select" value={this.status} onChange={this.handleInputChange} >
           <option>-- Choose an option --</option>
           <option value="pending">Pending</option>
           <option value="archive">Archive</option>

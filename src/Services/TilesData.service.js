@@ -12,16 +12,22 @@ class TilesDataService {
     });
   }
 
+  getTile(id) {
+    return axios.get(TILES_API + `/${id}`)
+  }
+
   getAllTiles() {
     return axios.get(TILES_API);
   }
 
-  getTiles(status) {
+  findTilesByStatus(status) {
+  }
 
+  update(id, data) {
+    return axios.put(TILES_API + `${id}`, data)
   }
 
   delete(id) {
-    console.log(TILES_API + `/${id}`)
     return axios.delete(TILES_API + `/${id}`);
   }
 
