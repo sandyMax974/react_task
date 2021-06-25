@@ -20,7 +20,7 @@ const TilesBoard = () => {
       <h1>
         Tile Board
         <span style={{ float: "right" }}>
-          <AddTileModal />
+          <AddTileModal tiles={tiles} setTiles={setTiles}/>
         </span>
       </h1>
       <hr />
