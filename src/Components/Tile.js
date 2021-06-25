@@ -1,7 +1,8 @@
 import React from "react";
+import DeleteTileModal from "./DeleteTileModal"
 import { Card, Button } from "react-bootstrap";
 
-const Tile = ({ tileId, tileStatus, tileLaunchDate }) => {
+const Tile = ({ setTiles, tiles, tileId, tileStatus, tileLaunchDate }) => {
   return (
     <Card>
       <Card.Header>
@@ -15,8 +16,7 @@ const Tile = ({ tileId, tileStatus, tileLaunchDate }) => {
       </Card.Body>
       <Card.Footer className="text-muted">
         <Button variant="primary">Update</Button>{" "}
-        <Button variant="primary">Delete</Button>
-        {/* <DeleteTileModal /> */}
+        <DeleteTileModal tileId={tileId} tiles={tiles} settiles={setTiles}/>
       </Card.Footer>
     </Card>
   );

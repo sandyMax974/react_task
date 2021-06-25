@@ -17,10 +17,11 @@ class TilesDataService {
   }
 
   getTiles(status) {
-    
+
   }
 
   delete(id) {
+    console.log(TILES_API + `/${id}`)
     return axios.delete(TILES_API + `/${id}`);
   }
 

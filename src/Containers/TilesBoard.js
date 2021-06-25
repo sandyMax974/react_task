@@ -28,6 +28,8 @@ const TilesBoard = () => {
         return (
           <div key={index}>
             <Tile
+              tiles={tiles}
+              setTiles={setTiles}
               tileId={tile.id}
               tileStatus={tile.status}
               tileLaunchDate={tile.launchDate}
