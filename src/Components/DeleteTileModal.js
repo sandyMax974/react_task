@@ -9,7 +9,7 @@ const DeleteTileModal = ({ tiles, setTiles, tileId }) => {
   const handleShow = () => setShow(true);
 
   const handleDeletion = async (id) => {
-    await TilesDataService.delete(id);
+    await TilesDataService.deleteTile(id);
     setShow(false);
     setTiles(tiles.filter((tile) => tile.id !== tileId)); // change this to call database
   };

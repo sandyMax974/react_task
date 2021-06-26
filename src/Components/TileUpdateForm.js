@@ -5,11 +5,8 @@ import TilesDataService from "../Services/TilesData.service";
 const TileUpdateForm = ({ tileId }) => {
   const [launchDate, setLaunchDate] = useState("");
   const [status, setStatus] = useState("");
-  const [updatedDate, setUpdatedDate] = useState("");
-  const [updatedStatus, setUpdatedStatus] = useState("");
 
   useEffect(() => {
-    // this is being call at each rendering - issue
     const getTileData = async (id) => {
       const tileData = await TilesDataService.getTile(id);
       setLaunchDate(tileData.data.launchDate);
@@ -20,8 +17,7 @@ const TileUpdateForm = ({ tileId }) => {
 
   const handleSubmit = async (id) => {
     const data = { launchDate: launchDate, status: status };
-    const updatedTileData = await TilesDataService.update(id, data);
-    console.log(updatedTileData);
+    await TilesDataService.updateTile(id, data);
   };
 
   return (

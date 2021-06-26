@@ -20,13 +20,11 @@ class TilesDataService {
     return axios.get(TILES_API);
   }
 
-  findTilesByStatus(status) {}
-
-  update(id, data) {
+  updateTile(id, data) {
     return axios.patch(TILES_API + `/${id}`, data);
   }
 
-  delete(id) {
+  deleteTile(id) {
     return axios.delete(TILES_API + `/${id}`);
   }
 }
