@@ -1,18 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
-import TilesDataService from '../Services/TilesData.service';
+import TilesDataService from "../Services/TilesData.service";
 
 const DeleteTileModal = ({ tiles, setTiles, tileId }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  
+
   const handleDeletion = async (id) => {
-    await TilesDataService.delete(id)
+    await TilesDataService.delete(id);
     setShow(false);
-    setTiles(tiles.filter((tile) => tile.id !== tileId))
-  }
+    setTiles(tiles.filter((tile) => tile.id !== tileId)); // change this to call database
+  };
 
   return (
     <>
@@ -24,7 +24,9 @@ const DeleteTileModal = ({ tiles, setTiles, tileId }) => {
         <Modal.Header closeButton>
           <Modal.Title>Are you sure?</Modal.Title>
         </Modal.Header>
-        <Modal.Body>If you delete this tile, all associated tasks will be delete.</Modal.Body>
+        <Modal.Body>
+          If you delete this tile, all associated tasks will be delete.
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Back
@@ -35,7 +37,7 @@ const DeleteTileModal = ({ tiles, setTiles, tileId }) => {
         </Modal.Footer>
       </Modal>
     </>
-  )
-}
+  );
+};
 
 export default DeleteTileModal;

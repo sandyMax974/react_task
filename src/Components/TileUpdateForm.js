@@ -3,31 +3,36 @@ import { Button, Form } from "react-bootstrap";
 import TilesDataService from "../Services/TilesData.service";
 
 const TileUpdateForm = ({ tileId }) => {
-  const [date, setDate] = useState("");
+  const [launchDate, setLaunchDate] = useState("");
   const [status, setStatus] = useState("");
-  const [updatedDate, setUpdatedDate] = useState(date);
-  const [updatedStatus, setUpdatedStatus] = useState(status);
+  const [updatedDate, setUpdatedDate] = useState("");
+  const [updatedStatus, setUpdatedStatus] = useState("");
 
   useEffect(() => {
+    // this is being call at each rendering - issue
     const getTileData = async (id) => {
       const tileData = await TilesDataService.getTile(id);
-      setDate(tileData.data.launchDate);
+      setLaunchDate(tileData.data.launchDate);
       setStatus(tileData.data.status);
     };
     getTileData(tileId);
   }, []);
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (id) => {
+    const data = { launchDate: launchDate, status: status };
+    const updatedTileData = await TilesDataService.update(id, data);
+    console.log(updatedTileData);
+  };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={() => handleSubmit(tileId)}>
       <Form.Group>
         <Form.Label>Launch Date</Form.Label>
         <Form.Control
-          name="date"
+          name="launch-date"
           type="date"
-          defaultValue={date}
-          onChange={(e) => setUpdatedDate(e.target.value)}
+          defaultValue={launchDate}
+          onChange={(e) => setLaunchDate(e.target.value)}
         />
       </Form.Group>
 
@@ -36,10 +41,10 @@ const TileUpdateForm = ({ tileId }) => {
         <Form.Control
           name="status"
           as="select"
-          defaultValue={status}
-          onChange={(e) => setUpdatedStatus(e.target.value)}
+          defaultValue={status} // come back to this
+          onChange={(e) => setStatus(e.target.value)}
         >
-          <option>-- Choose an option --</option>
+          <option value="">-- Choose an option --</option>
           <option value="pending">Pending</option>
           <option value="archive">Archive</option>
           <option value="live">Live</option>
