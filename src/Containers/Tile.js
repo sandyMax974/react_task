@@ -12,13 +12,14 @@ const Tile = ({ tile, setTiles, tiles }) => {
   // need to split these to be more specific on what to do and when
   // mount => connect to BE and retrieve associated tasks
 
-  useEffect(() => {
-    const getTasksList = async () => {
-      const tasksListFromDatabase = await TasksDataService.getAllTasks(tile.id); // need to filter the GET request here
-      setTasks(tasksListFromDatabase.data);
-    };
-    getTasksList();
-  });
+  // useEffect(() => {
+  console.log(`taskBoard - useEffect is firing`); // this useEffect is causing an infinite loop
+  const getTasksList = async () => {
+    const tasksListFromDatabase = await TasksDataService.getAllTasks(tile.id);
+    setTasks(tasksListFromDatabase.data);
+  };
+  // getTasksList();
+  // });
 
   return (
     <Card>

@@ -11,15 +11,15 @@ const TilesBoard = () => {
     const getTilesList = async () => {
       const tilesListFromDatabase = await TilesDataService.getAllTiles();
       setTiles(tilesListFromDatabase.data);
+      return tilesListFromDatabase;
     };
     getTilesList();
   }, []);
 
   // Add filter options
-  // const getFilterTileList = async (status) => {
-  //   const filteredTileList = await TilesDataService.getTileByStatus(status);
-  //   setTiles(filteredTileList.data);
-  // };
+  const getFilterTileList = (status) => {
+    setTiles(tiles.filter((tile) => tile.status === status));
+  };
 
   return (
     <div>
@@ -34,21 +34,21 @@ const TilesBoard = () => {
         <Button
           size="sm"
           variant="info"
-          // onClick={() => getFilterTileList("live")}
+          onClick={() => getFilterTileList("live")}
         >
           Live
         </Button>
         <Button
           size="sm"
           variant="info"
-          // onClick={() => getFilterTileList("pending")}
+          onClick={() => getFilterTileList("pending")}
         >
           Pending
         </Button>
         <Button
           size="sm"
           variant="info"
-          // onClick={() => getFilterTileList("archive")}
+          onClick={() => getFilterTileList("archive")}
         >
           Archive
         </Button>
@@ -61,19 +61,10 @@ const TilesBoard = () => {
         <Row className="show-grid">
           {tiles.map((tile, index) => {
             return (
-              // <div key={index}>
               <Col key={index} md={6}>
-                <Tile
-                  tiles={tiles}
-                  setTiles={setTiles}
-                  tile={tile}
-                  tileId={tile.id}
-                  tileStatus={tile.status}
-                  tileLaunchDate={tile.launchDate}
-                />
+                <Tile tiles={tiles} setTiles={setTiles} tile={tile} />
                 <hr />
               </Col>
-              // </div>
             );
           })}
         </Row>
