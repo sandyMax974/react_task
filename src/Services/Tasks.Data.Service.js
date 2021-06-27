@@ -5,8 +5,14 @@ axios.defaults.xsrfHeaderName = "X-CSRFToken";
 const TASKS_API = "http://localhost:8000/api/tasks";
 
 class TasksDataService {
-  createTask() {
-    return axios.post(TASKS_API, {});
+  createTask(title, order, description, type, tile) {
+    return axios.post(TASKS_API, {
+      title,
+      order,
+      description,
+      type,
+      tile,
+    });
   }
 
   getTask(id) {

@@ -13,6 +13,11 @@
   }
 }
 
+.carousel-caption {
+  top: 0;
+  bottom: auto;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

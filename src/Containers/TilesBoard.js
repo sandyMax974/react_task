@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import TilesDataService from "../Services/TilesData.service";
 import Tile from "./Tile";
 import AddTileModal from "../Components/AddTileModal";
-import { Button, ButtonGroup } from "react-bootstrap";
+import { Button, ButtonGroup, Container, Row, Col } from "react-bootstrap";
 
 const TilesBoard = () => {
   const [tiles, setTiles] = useState([]);
@@ -57,20 +57,26 @@ const TilesBoard = () => {
         Reset
       </Button>
       <hr />
-      {tiles.map((tile, index) => {
-        return (
-          <div key={index}>
-            <Tile
-              tiles={tiles}
-              setTiles={setTiles}
-              tileId={tile.id}
-              tileStatus={tile.status}
-              tileLaunchDate={tile.launchDate}
-            />
-            <hr />
-          </div>
-        );
-      })}
+      <Container>
+        <Row className="show-grid">
+          {tiles.map((tile, index) => {
+            return (
+              // <div key={index}>
+              <Col key={index} md={6}>
+                <Tile
+                  tiles={tiles}
+                  setTiles={setTiles}
+                  tileId={tile.id}
+                  tileStatus={tile.status}
+                  tileLaunchDate={tile.launchDate}
+                />
+                <hr />
+              </Col>
+              // </div>
+            );
+          })}
+        </Row>
+      </Container>
     </div>
   );
 };
