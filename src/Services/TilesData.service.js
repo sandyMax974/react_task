@@ -20,6 +20,10 @@ class TilesDataService {
     return axios.get(TILES_API);
   }
 
+  getTileByStatus(status) {
+    return axios.get(TILES_API + `?status=${status}`);
+  }
+
   updateTile(id, data) {
     return axios.patch(TILES_API + `/${id}`, data);
   }

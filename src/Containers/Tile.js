@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import TasksDataService from "../Services/Tasks.Data.Service";
 import DeleteTileModal from "../Components/DeleteTileModal";
 import UpdateTileModal from "../Components/UpdateTileModal";
+import NewTaskModal from "../Components/NewTaskModal";
 import TasksBoard from "./TasksBoard";
 import { Card, Badge } from "react-bootstrap";
 
 const Tile = ({ setTiles, tiles, tileId, tileStatus, tileLaunchDate }) => {
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    const getTasksList = async () => {
+      const tasksListFromDatabase = await TasksDataService.getAllTasks(tileId); // need to filter the GET request here
+      setTasks(tasksListFromDatabase.data);
+    };
+    getTasksList();
+  }, []);
+
   return (
     <Card>
       <Card.Header>
@@ -18,10 +30,9 @@ const Tile = ({ setTiles, tiles, tileId, tileStatus, tileLaunchDate }) => {
           </div>
         </h4>
       </Card.Header>
-      {/* <Card.Body> */}
-      <TasksBoard />
-      {/* </Card.Body> */}
+      <TasksBoard tileId={tileId} tasks={tasks} />
       <Card.Footer className="text-muted">
+        <NewTaskModal tileId={tileId} tiles={tiles} setTiles={setTiles} />{" "}
         <UpdateTileModal tileId={tileId} tiles={tiles} setTiles={setTiles} />{" "}
         <DeleteTileModal tileId={tileId} tiles={tiles} setTiles={setTiles} />
       </Card.Footer>

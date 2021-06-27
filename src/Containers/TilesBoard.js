@@ -16,6 +16,11 @@ const TilesBoard = () => {
   }, []);
 
   // Add filter options
+  // const getFilterTileList = async (status) => {
+  //   const filteredTileList = await TilesDataService.getTileByStatus(status);
+  //   setTiles(filteredTileList.data);
+  // };
+
   return (
     <div>
       <h1>
@@ -26,13 +31,25 @@ const TilesBoard = () => {
       </h1>
       <hr />
       <ButtonGroup aria-label="tile-status-filter">
-        <Button size="sm" variant="info">
+        <Button
+          size="sm"
+          variant="info"
+          // onClick={() => getFilterTileList("live")}
+        >
           Live
         </Button>
-        <Button size="sm" variant="info">
+        <Button
+          size="sm"
+          variant="info"
+          // onClick={() => getFilterTileList("pending")}
+        >
           Pending
         </Button>
-        <Button size="sm" variant="info">
+        <Button
+          size="sm"
+          variant="info"
+          // onClick={() => getFilterTileList("archive")}
+        >
           Archive
         </Button>
       </ButtonGroup>{" "}
