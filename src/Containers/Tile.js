@@ -6,35 +6,38 @@ import NewTaskModal from "../Components/NewTaskModal";
 import TasksBoard from "./TasksBoard";
 import { Card, Badge } from "react-bootstrap";
 
-const Tile = ({ setTiles, tiles, tileId, tileStatus, tileLaunchDate }) => {
+const Tile = ({ tile, setTiles, tiles }) => {
   const [tasks, setTasks] = useState([]);
+
+  // need to split these to be more specific on what to do and when
+  // mount => connect to BE and retrieve associated tasks
 
   useEffect(() => {
     const getTasksList = async () => {
-      const tasksListFromDatabase = await TasksDataService.getAllTasks(tileId); // need to filter the GET request here
+      const tasksListFromDatabase = await TasksDataService.getAllTasks(tile.id); // need to filter the GET request here
       setTasks(tasksListFromDatabase.data);
     };
     getTasksList();
-  }, []);
+  });
 
   return (
     <Card>
       <Card.Header>
         <h4>
           <div style={{ float: "left" }}>
-            <Badge variant="dark">#{tileId}</Badge>
+            <Badge variant="dark">#{tile.id}</Badge>
           </div>
           <div style={{ float: "right" }}>
-            <Badge variant="secondary">{tileStatus.toUpperCase()}</Badge>{" "}
-            <Badge variant="secondary">{tileLaunchDate}</Badge>
+            <Badge variant="secondary">{tile.status.toUpperCase()}</Badge>{" "}
+            <Badge variant="secondary">{tile.launchDate}</Badge>
           </div>
         </h4>
       </Card.Header>
-      <TasksBoard tileId={tileId} tasks={tasks} setTasks={setTasks} />
+      <TasksBoard tasks={tasks} setTasks={setTasks} />
       <Card.Footer className="text-muted">
-        <NewTaskModal tileId={tileId} tiles={tiles} setTiles={setTiles} />{" "}
-        <UpdateTileModal tileId={tileId} tiles={tiles} setTiles={setTiles} />{" "}
-        <DeleteTileModal tileId={tileId} tiles={tiles} setTiles={setTiles} />
+        <NewTaskModal tileId={tile.id} tiles={tiles} setTiles={setTiles} />{" "}
+        <UpdateTileModal tile={tile} tiles={tiles} setTiles={setTiles} />{" "}
+        <DeleteTileModal tile={tile} tiles={tiles} setTiles={setTiles} />
       </Card.Footer>
     </Card>
   );

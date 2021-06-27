@@ -1,6 +1,7 @@
 import React from "react";
 import { Carousel, Badge } from "react-bootstrap";
 import DeleteTaskModal from "../Components/DeleteTaskModal";
+import UpdateTaskModal from "../Components/UpdateTaskModal";
 
 const TasksBoard = ({ tasks, setTasks }) => {
   return (
@@ -14,11 +15,8 @@ const TasksBoard = ({ tasks, setTasks }) => {
               alt={`${index} slide`}
             />
             <Carousel.Caption>
-              <DeleteTaskModal
-                taskId={task.id}
-                tasks={tasks}
-                setTasks={setTasks}
-              />
+              <UpdateTaskModal tasks={tasks} setTasks={setTasks} task={task} />{" "}
+              <DeleteTaskModal tasks={tasks} setTasks={setTasks} task={task} />
               <div>
                 <Badge variant="secondary">{task.title}</Badge>
               </div>

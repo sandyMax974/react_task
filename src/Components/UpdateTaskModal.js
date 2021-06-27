@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
-import TileUpdateForm from "./TileUpdateForm";
+import TaskUpdateForm from "./TaskUpdateForm";
 
-const UpdateTileModal = ({ tile }) => {
+const UpdateTaskModal = ({ task, tasks, setTasks }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -10,16 +10,16 @@ const UpdateTileModal = ({ tile }) => {
 
   return (
     <>
-      <Button variant="secondary" onClick={handleShow}>
+      <Button variant="outline-secondary" size="sm" onClick={handleShow}>
         Update
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Update tile details</Modal.Title>
+          <Modal.Title>Update task details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <TileUpdateForm tile={tile} />
+          <TaskUpdateForm task={task} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -31,4 +31,4 @@ const UpdateTileModal = ({ tile }) => {
   );
 };
 
-export default UpdateTileModal;
+export default UpdateTaskModal;

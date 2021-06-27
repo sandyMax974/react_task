@@ -66,6 +66,7 @@ const TilesBoard = () => {
                 <Tile
                   tiles={tiles}
                   setTiles={setTiles}
+                  tile={tile}
                   tileId={tile.id}
                   tileStatus={tile.status}
                   tileLaunchDate={tile.launchDate}

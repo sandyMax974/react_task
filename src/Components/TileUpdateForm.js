@@ -1,19 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import TilesDataService from "../Services/TilesData.service";
 
-const TileUpdateForm = ({ tileId }) => {
+const TileUpdateForm = ({ tile }) => {
   const [launchDate, setLaunchDate] = useState("");
   const [status, setStatus] = useState("");
-
-  useEffect(() => {
-    const getTileData = async (id) => {
-      const tileData = await TilesDataService.getTile(id);
-      setLaunchDate(tileData.data.launchDate);
-      setStatus(tileData.data.status);
-    };
-    getTileData(tileId);
-  }, []);
 
   const handleSubmit = async (id) => {
     const data = { launchDate: launchDate, status: status };
@@ -21,13 +12,13 @@ const TileUpdateForm = ({ tileId }) => {
   };
 
   return (
-    <Form onSubmit={() => handleSubmit(tileId)}>
+    <Form onSubmit={() => handleSubmit(tile.id)}>
       <Form.Group>
         <Form.Label>Launch Date</Form.Label>
         <Form.Control
           name="launch-date"
           type="date"
-          defaultValue={launchDate}
+          defaultValue={tile.launchDate}
           onChange={(e) => setLaunchDate(e.target.value)}
         />
       </Form.Group>
@@ -37,7 +28,7 @@ const TileUpdateForm = ({ tileId }) => {
         <Form.Control
           name="status"
           as="select"
-          defaultValue={status} // come back to this
+          defaultValue={tile.status} // come back to this
           onChange={(e) => setStatus(e.target.value)}
         >
           <option value="">-- Choose an option --</option>

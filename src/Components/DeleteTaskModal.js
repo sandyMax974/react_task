@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import TasksDataService from "../Services/Tasks.Data.Service";
 
-const DeleteTaskModal = ({ taskId, tasks, setTasks }) => {
+const DeleteTaskModal = ({ tasks, setTasks, task }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -29,7 +29,7 @@ const DeleteTaskModal = ({ taskId, tasks, setTasks }) => {
           <Button variant="secondary" onClick={handleClose}>
             Back
           </Button>
-          <Button variant="danger" onClick={() => handleDeletion(taskId)}>
+          <Button variant="danger" onClick={() => handleDeletion(task.id)}>
             Confirm
           </Button>
         </Modal.Footer>
