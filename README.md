@@ -7,7 +7,9 @@ Using you’re the data structure from above, we want you to expand the applicat
 
 ## How to run
 
-You need to have npm installed on your machine.
+### Prerequisites
+* You need to have npm installed on your machine.
+* You'll also need to have the back-end server running: [django_task](https://github.com/sandyMax974/django_task)
 
 1. Clone this repository: 
 2. `cd` into `react_task` directory
