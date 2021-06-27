@@ -30,7 +30,7 @@ const Tile = ({ setTiles, tiles, tileId, tileStatus, tileLaunchDate }) => {
           </div>
         </h4>
       </Card.Header>
-      <TasksBoard tileId={tileId} tasks={tasks} />
+      <TasksBoard tileId={tileId} tasks={tasks} setTasks={setTasks} />
       <Card.Footer className="text-muted">
         <NewTaskModal tileId={tileId} tiles={tiles} setTiles={setTiles} />{" "}
         <UpdateTileModal tileId={tileId} tiles={tiles} setTiles={setTiles} />{" "}
