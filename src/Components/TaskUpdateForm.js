@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import TasksDataService from "../Services/Tasks.Data.Service";
 
-const TaskUpdateForm = ({ task }) => {
+const TaskUpdateForm = (props) => {
   const [title, setTitle] = useState("");
   const [order, setOrder] = useState("");
   const [description, setDescription] = useState("");
   const [type, setType] = useState("");
-  const [tile, setTile] = useState(task.tile);
+  const [tile, setTile] = useState(props.task.tile);
 
   const handleSubmit = async (id) => {
     const data = {
@@ -21,13 +21,13 @@ const TaskUpdateForm = ({ task }) => {
   };
 
   return (
-    <Form onSubmit={() => handleSubmit(task.id)}>
+    <Form onSubmit={() => handleSubmit(props.task.id)}>
       <Form.Group>
         <Form.Label>Title</Form.Label>
         <Form.Control
           name="title"
           type="text"
-          defaultValue={task.title}
+          defaultValue={props.task.title}
           onChange={(e) => setTitle(e.target.value)}
         />
       </Form.Group>
@@ -37,7 +37,7 @@ const TaskUpdateForm = ({ task }) => {
         <Form.Control
           name="order"
           type="text"
-          defaultValue={task.order}
+          defaultValue={props.task.order}
           onChange={(e) => setOrder(e.target.value)}
         />
       </Form.Group>
@@ -47,7 +47,7 @@ const TaskUpdateForm = ({ task }) => {
         <Form.Control
           name="description"
           type="text"
-          defaultValue={task.description}
+          defaultValue={props.task.description}
           onChange={(e) => setDescription(e.target.value)}
         />
       </Form.Group>
@@ -57,7 +57,7 @@ const TaskUpdateForm = ({ task }) => {
         <Form.Control
           name="type"
           type="text"
-          defaultValue={task.type}
+          defaultValue={props.task.type}
           onChange={(e) => setType(e.target.value)}
         />
       </Form.Group>

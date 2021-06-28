@@ -2,23 +2,24 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import TilesDataService from "../Services/TilesData.service";
 
-const TileUpdateForm = ({ tile }) => {
+const TileUpdateForm = (props) => {
   const [launchDate, setLaunchDate] = useState("");
   const [status, setStatus] = useState("");
 
   const handleSubmit = async (id) => {
     const data = { launchDate: launchDate, status: status };
-    await TilesDataService.updateTile(id, data);
+    await TilesDataService.updateTile(id, data); // need to check that service - issue with partial_update on the backend
   };
 
+  console.log(props);
   return (
-    <Form onSubmit={() => handleSubmit(tile.id)}>
+    <Form onSubmit={() => handleSubmit(props.props.tile.id)}>
       <Form.Group>
         <Form.Label>Launch Date</Form.Label>
         <Form.Control
           name="launch-date"
           type="date"
-          defaultValue={tile.launchDate}
+          defaultValue={props.props.tile.launchDate}
           onChange={(e) => setLaunchDate(e.target.value)}
         />
       </Form.Group>
@@ -28,7 +29,7 @@ const TileUpdateForm = ({ tile }) => {
         <Form.Control
           name="status"
           as="select"
-          defaultValue={tile.status} // come back to this
+          defaultValue={props.props.tile.status}
           onChange={(e) => setStatus(e.target.value)}
         >
           <option value="">-- Choose an option --</option>

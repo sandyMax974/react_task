@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import TaskUpdateForm from "./TaskUpdateForm";
 
-const UpdateTaskModal = ({ task, tasks, setTasks }) => {
+const UpdateTaskModal = (props) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -19,7 +19,7 @@ const UpdateTaskModal = ({ task, tasks, setTasks }) => {
           <Modal.Title>Update task details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <TaskUpdateForm task={task} />
+          <TaskUpdateForm task={props} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
