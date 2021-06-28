@@ -26,6 +26,10 @@ export default class TilesBoard extends Component {
     });
   };
 
+  resetTileList = () => {
+    this.getTileData();
+  };
+
   componentDidMount = () => {
     this.getTileData();
   };
@@ -53,19 +57,19 @@ export default class TilesBoard extends Component {
           <Button
             size="sm"
             variant="info"
-            // onClick={() => getFilterTileList("pending")}
+            onClick={() => this.getFilterTileList("pending")}
           >
             Pending
           </Button>
           <Button
             size="sm"
             variant="info"
-            // onClick={() => getFilterTileList("archive")}
+            onClick={() => this.getFilterTileList("archive")}
           >
             Archive
           </Button>
         </ButtonGroup>{" "}
-        <Button size="sm" variant="info">
+        <Button size="sm" variant="info" onClick={() => this.resetTileList()}>
           Reset
         </Button>
         <hr />
