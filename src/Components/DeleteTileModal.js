@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import TilesDataService from "../Services/TilesData.service";
 
-const DeleteTileModal = ({ tiles, setTiles, tile }) => {
+const DeleteTileModal = (props) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -11,7 +11,7 @@ const DeleteTileModal = ({ tiles, setTiles, tile }) => {
   const handleDeletion = async (id) => {
     await TilesDataService.deleteTile(id);
     setShow(false);
-    setTiles(tiles.filter((tile) => tile.id !== id));
+    props.props.getTilesData();
   };
 
   return (
@@ -31,7 +31,10 @@ const DeleteTileModal = ({ tiles, setTiles, tile }) => {
           <Button variant="secondary" onClick={handleClose}>
             Back
           </Button>
-          <Button variant="danger" onClick={() => handleDeletion(tile.id)}>
+          <Button
+            variant="danger"
+            onClick={() => handleDeletion(props.props.tile.id)}
+          >
             Confirm
           </Button>
         </Modal.Footer>

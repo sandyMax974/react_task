@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import TasksDataService from "../Services/Tasks.Data.Service";
 
-const TaskForm = ({ tileId }) => {
+const TaskForm = (props) => {
   const [title, setTitle] = useState("");
   const [order, setOrder] = useState("");
   const [description, setDescription] = useState("");
@@ -11,9 +11,9 @@ const TaskForm = ({ tileId }) => {
   const handleSubmit = async (tileId) => {
     await TasksDataService.createTask(title, order, description, type, tileId);
   };
-
+  console.log(props);
   return (
-    <Form onSubmit={() => handleSubmit(tileId)}>
+    <Form onSubmit={() => handleSubmit(props.tile.props.tile.id)}>
       <Form.Group>
         <Form.Label>Title</Form.Label>
         <Form.Control
@@ -49,20 +49,6 @@ const TaskForm = ({ tileId }) => {
           onChange={(e) => setType(e.target.value)}
         />
       </Form.Group>
-
-      {/* <Form.Group>
-        <Form.Label>Status</Form.Label>
-        <Form.Control
-          name="status"
-          as="select"
-          onChange={(e) => setStatus(e.target.value)}
-        >
-          <option value="">-- Choose an option --</option>
-          <option value="pending">Pending</option>
-          <option value="archive">Archive</option>
-          <option value="live">Live</option>
-        </Form.Control>
-      </Form.Group> */}
 
       <Button variant="primary" type="submit">
         Submit

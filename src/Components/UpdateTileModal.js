@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import TileUpdateForm from "./TileUpdateForm";
 
-const UpdateTileModal = ({ tile }) => {
+const UpdateTileModal = (props) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -19,7 +19,7 @@ const UpdateTileModal = ({ tile }) => {
           <Modal.Title>Update tile details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <TileUpdateForm tile={tile} />
+          <TileUpdateForm props={props.props} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

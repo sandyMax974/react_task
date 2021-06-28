@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import TaskForm from "./TaskForm";
 
-const NewTaskModal = ({ tileId }) => {
+const NewTaskModal = (props) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -19,7 +19,7 @@ const NewTaskModal = ({ tileId }) => {
           <Modal.Title>Enter new task details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <TaskForm tileId={tileId} />
+          <TaskForm tile={props} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

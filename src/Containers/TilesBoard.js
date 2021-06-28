@@ -1,76 +1,93 @@
-import React, { useState, useEffect } from "react";
+import React, { Component } from "react";
 import TilesDataService from "../Services/TilesData.service";
 import Tile from "./Tile";
 import AddTileModal from "../Components/AddTileModal";
 import { Button, ButtonGroup, Container, Row, Col } from "react-bootstrap";
 
-const TilesBoard = () => {
-  const [tiles, setTiles] = useState([]);
-
-  useEffect(() => {
-    const getTilesList = async () => {
-      const tilesListFromDatabase = await TilesDataService.getAllTiles();
-      setTiles(tilesListFromDatabase.data);
-      return tilesListFromDatabase;
+export default class TilesBoard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tiles: [],
+      isFetching: false, //might use to add a spinner
     };
-    getTilesList();
-  }, []);
+  }
 
-  // Add filter options
-  const getFilterTileList = (status) => {
-    setTiles(tiles.filter((tile) => tile.status === status));
+  getTileData = async () => {
+    this.setState({ ...this.state, isFetching: true });
+    const tilesListFromDatabase = await TilesDataService.getAllTiles();
+    this.setState({ tiles: tilesListFromDatabase.data, isFetching: false });
   };
 
-  return (
-    <div>
-      <h1>
-        Tile Board
-        <span style={{ float: "right" }}>
-          <AddTileModal tiles={tiles} setTiles={setTiles} />
-        </span>
-      </h1>
-      <hr />
-      <ButtonGroup aria-label="tile-status-filter">
-        <Button
-          size="sm"
-          variant="info"
-          onClick={() => getFilterTileList("live")}
-        >
-          Live
-        </Button>
-        <Button
-          size="sm"
-          variant="info"
-          onClick={() => getFilterTileList("pending")}
-        >
-          Pending
-        </Button>
-        <Button
-          size="sm"
-          variant="info"
-          onClick={() => getFilterTileList("archive")}
-        >
-          Archive
-        </Button>
-      </ButtonGroup>{" "}
-      <Button size="sm" variant="info">
-        Reset
-      </Button>
-      <hr />
-      <Container>
-        <Row className="show-grid">
-          {tiles.map((tile, index) => {
-            return (
-              <Col key={index} md={6}>
-                <Tile tiles={tiles} setTiles={setTiles} tile={tile} />
-                <hr />
-              </Col>
-            );
-          })}
-        </Row>
-      </Container>
-    </div>
-  );
-};
+  getFilterTileList = (status) => {
+    this.setState({
+      ...this.state,
+      tiles: this.state.tiles.filter((tile) => tile.status === status),
+    });
+  };
 
-export default TilesBoard;
+  resetTileList = () => {
+    this.getTileData();
+  };
+
+  componentDidMount = () => {
+    this.getTileData();
+  };
+
+  render() {
+    console.log(this.state);
+    console.log("Tileboard render");
+    return (
+      <div>
+        <h1>
+          Tile Board
+          <span style={{ float: "right" }}>
+            <AddTileModal />
+          </span>
+        </h1>
+        <hr />
+        <ButtonGroup>
+          <Button
+            size="sm"
+            variant="info"
+            onClick={() => this.getFilterTileList("live")}
+          >
+            Live
+          </Button>
+          <Button
+            size="sm"
+            variant="info"
+            onClick={() => this.getFilterTileList("pending")}
+          >
+            Pending
+          </Button>
+          <Button
+            size="sm"
+            variant="info"
+            onClick={() => this.getFilterTileList("archive")}
+          >
+            Archive
+          </Button>
+        </ButtonGroup>{" "}
+        <Button size="sm" variant="info" onClick={() => this.resetTileList()}>
+          Reset
+        </Button>
+        <hr />
+        <p>{this.state.isFetching === true ? "Fetching tiles..." : ""}</p>
+        <Container>
+          <Row className="show-grid">
+            {this.state.tiles &&
+              this.state.tiles.map((tile, index) => {
+                return (
+                  <Col key={`tile-${index}`} md={12} lg={6}>
+                    <Tile tile={tile} getTilesData={this.getTileData} />
+                    <hr />
+                  </Col>
+                );
+              })}
+          </Row>
+        </Container>
+      </div>
+    );
+  }
+}
