@@ -13,7 +13,7 @@ const TaskForm = (props) => {
   };
   console.log(props);
   return (
-    <Form onSubmit={() => handleSubmit(props.props.props.tile.id)}>
+    <Form onSubmit={() => handleSubmit(props.tile.props.tile.id)}>
       <Form.Group>
         <Form.Label>Title</Form.Label>
         <Form.Control
