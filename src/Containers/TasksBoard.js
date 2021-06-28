@@ -29,7 +29,7 @@ export default class TasksBoard extends Component {
     console.log("TaskBoard render");
     return (
       <>
-        <Carousel>
+        <Carousel interval={null}>
           {this.state.tasks &&
             this.state.tasks.map((task, index) => {
               {
@@ -52,7 +52,7 @@ export default class TasksBoard extends Component {
                         <h5>{task.title}</h5>
                         <div style={{ margin: "1em" }}>{task.description}</div>
                         <div>
-                          <Badge variant="secondary">#{task.id}</Badge>{" "}
+                          <Badge variant="secondary">#{task.order}</Badge>{" "}
                           <Badge variant="secondary">{task.type}</Badge>
                         </div>
                       </Carousel.Caption>
