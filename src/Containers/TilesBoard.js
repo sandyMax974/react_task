@@ -35,7 +35,6 @@ export default class TilesBoard extends Component {
   };
 
   render() {
-    console.log(this.state);
     console.log("Tileboard render");
     return (
       <div>

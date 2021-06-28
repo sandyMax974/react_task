@@ -11,7 +11,7 @@ const TaskForm = (props) => {
   const handleSubmit = async (tileId) => {
     await TasksDataService.createTask(title, order, description, type, tileId);
   };
-  console.log(props);
+
   return (
     <Form onSubmit={() => handleSubmit(props.tile.props.tile.id)}>
       <Form.Group>

@@ -7,9 +7,8 @@ const TaskUpdateForm = (props) => {
   const [order, setOrder] = useState(props.task.task.order);
   const [description, setDescription] = useState(props.task.task.description);
   const [type, setType] = useState(props.task.task.type);
-  const [tile, setTile] = useState(props.task.task.tile);
+  const tile = props.task.task.tile;
 
-  console.log("update task form", props.task.task);
   const handleSubmit = async (id) => {
     const data = {
       title: title,

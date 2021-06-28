@@ -8,10 +8,9 @@ const TileUpdateForm = (props) => {
 
   const handleSubmit = async (id) => {
     const data = { launchDate: launchDate, status: status };
-    await TilesDataService.updateTile(id, data); // need to check that service - issue with partial_update on the backend
+    await TilesDataService.updateTile(id, data);
   };
 
-  console.log(props);
   return (
     <Form onSubmit={() => handleSubmit(props.props.tile.id)}>
       <Form.Group>
