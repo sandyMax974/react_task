@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TilesDataService from "../Services/TilesData.service";
+import TasksDataService from "../Services/Tasks.Data.Service";
 import Tile from "./Tile";
 import AddTileModal from "../Components/AddTileModal";
 import { Button, ButtonGroup, Container, Row, Col } from "react-bootstrap";
@@ -9,15 +10,18 @@ export default class TilesBoard extends Component {
     super(props);
     this.state = {
       tiles: [],
+      tasks: [],
       isFetching: false, //might use to add a spinner
     };
   }
 
-  getTileData = async () => {
+  getAllData = async () => {
     this.setState({ ...this.state, isFetching: true });
     const tilesListFromDatabase = await TilesDataService.getAllTiles();
+    const tasksListFromDatabase = await TasksDataService.getAllTasks();
     this.setState({
       tiles: tilesListFromDatabase.data,
+      tasks: tasksListFromDatabase.data,
       isFetching: false,
     });
   };
@@ -30,14 +34,15 @@ export default class TilesBoard extends Component {
   };
 
   resetTileList = () => {
-    this.getTileData();
+    this.getAllData();
   };
 
   componentDidMount = () => {
-    this.getTileData();
+    this.getAllData();
   };
 
   render() {
+    // console.log(this.state.tasks);
     return (
       <div>
         <h1>
@@ -74,14 +79,20 @@ export default class TilesBoard extends Component {
           Reset
         </Button>
         <hr />
-        <p>{this.state.isFetching === true ? "Fetching tiles..." : ""}</p>
+        <p>{this.state.isFetching === true ? "Fetching data..." : ""}</p>
         <Container>
           <Row className="show-grid">
             {this.state.tiles &&
               this.state.tiles.map((tile, index) => {
                 return (
                   <Col key={`tile-${index}`} md={12} lg={6}>
-                    <Tile tile={tile} getTilesData={this.getTileData} />
+                    <Tile
+                      tile={tile}
+                      tasks={this.state.tasks.filter(
+                        (task) => task.tile === tile.id
+                      )}
+                      getAllData={this.getAllData}
+                    />
                     <hr />
                   </Col>
                 );

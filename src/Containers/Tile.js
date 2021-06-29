@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import TasksDataService from "../Services/Tasks.Data.Service";
 import DeleteTileModal from "../Components/DeleteTileModal";
 import UpdateTileModal from "../Components/UpdateTileModal";
 import NewTaskModal from "../Components/NewTaskModal";
@@ -9,21 +8,21 @@ import { Card, Badge } from "react-bootstrap";
 class Tile extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      tasks: [],
-    };
+    // this.state = {
+    //   tasks: [],
+    // };
   }
 
-  getTasksList = async () => {
-    const tasksListFromDatabase = await TasksDataService.getAllTasks(
-      this.props.tile.id
-    );
-    this.setState({ tasks: tasksListFromDatabase.data });
-  };
+  // getTasksList = async () => {
+  //   const tasksListFromDatabase = await TasksDataService.getAllTasks(
+  //     this.props.tile.id
+  //   );
+  //   this.setState({ tasks: tasksListFromDatabase.data });
+  // };
 
-  componentDidMount = () => {
-    this.getTasksList();
-  };
+  // componentDidMount = () => {
+  //   this.getTasksList();
+  // };
 
   // shouldComponentUpdate = () => {
   //   this.getTasksList();
@@ -31,6 +30,7 @@ class Tile extends Component {
   // };
 
   render() {
+    // console.log(this.props);
     return (
       <Card>
         <Card.Header>
@@ -46,7 +46,10 @@ class Tile extends Component {
             </div>
           </h4>
         </Card.Header>
-        <TasksBoard tasks={this.state} />
+        <TasksBoard
+          tasks={this.props.tasks}
+          getAllData={this.props.getAllData}
+        />
         <Card.Footer className="text-muted">
           <NewTaskModal props={this.props} />{" "}
           <UpdateTileModal props={this.props} />{" "}
