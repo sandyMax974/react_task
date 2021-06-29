@@ -24,7 +24,6 @@ We want you to expand the application by creating a simple React frontend which 
 ## How to run
 
 ### Prerequisites
-* You need to have npm installed on your machine.
 * You'll also need to have the latest version of the back-end server running: [django_task](https://github.com/sandyMax974/django_task)
 
 1. Clone this repository: 
