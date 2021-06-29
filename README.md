@@ -4,7 +4,7 @@
 Using you’re the data structure from above, we want you to expand the application by creating a simple React frontend which interacts with the API, allowing tiles to be created/edited/removed, and allow tasks to be created/edited/removed within these tiles. Tiles should be filterable by their status and are ordered by their launch dates. Tasks within the tiles should be ordered by their order field. All data fields should be visible. Ignore building in authentication and assume all users have access to view and manipulate these tasks and tiles.
 
 ## App Structure
-![Components](image)
+![Components](https://github.com/sandyMax974/react_task/blob/main/public/Screenshot%202021-06-29%20at%2013.20.26.png)
 
 * App
   * TilesBoard
