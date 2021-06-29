@@ -52,7 +52,7 @@ export default class TilesBoard extends Component {
     return (
       <div>
         <h1>
-          Tile Board
+          Tiles Board
           <span style={{ float: "right" }}>
             <AddTileModal />
           </span>
