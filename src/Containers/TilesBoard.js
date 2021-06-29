@@ -85,7 +85,7 @@ export default class TilesBoard extends Component {
           Reset
         </Button>
         <hr />
-        <p>
+        <div>
           {this.state.isFetching === true ? (
             <div>
               <Spinner animation="border" role="status">
@@ -96,7 +96,7 @@ export default class TilesBoard extends Component {
           ) : (
             <div></div>
           )}
-        </p>
+        </div>
         <Container>
           <Row className="show-grid">
             {this.state.tiles &&
