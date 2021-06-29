@@ -19,7 +19,7 @@ class TasksDataService {
     return axios.get(TASKS_API + `/${id}`);
   }
 
-  getAllTasks(tileId) {
+  getAllTasks(tileId = "") {
     return axios.get(TASKS_API + `?tile_id=${tileId}`);
   }
 

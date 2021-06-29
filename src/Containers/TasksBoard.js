@@ -4,11 +4,12 @@ import DeleteTaskModal from "../Components/DeleteTaskModal";
 import UpdateTaskModal from "../Components/UpdateTaskModal";
 
 const TasksBoard = (props) => {
+  // console.log(props);
   return (
     <>
       <Carousel interval={null}>
-        {props.tasks.tasks &&
-          props.tasks.tasks.map((task, index) => {
+        {props.tasks &&
+          props.tasks.map((task, index) => {
             return (
               <Carousel.Item key={`task-${index}`}>
                 <img
@@ -19,10 +20,7 @@ const TasksBoard = (props) => {
                 <Carousel.Caption>
                   <div style={{ marginBottom: "1em" }}>
                     <UpdateTaskModal task={task} />{" "}
-                    <DeleteTaskModal
-                      task={task}
-                      getTasksList={props.getTasksList}
-                    />
+                    <DeleteTaskModal task={task} props={props} />
                   </div>
                   <h5>{task.title}</h5>
                   <div style={{ margin: "1em" }}>{task.description}</div>

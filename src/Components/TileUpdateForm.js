@@ -3,8 +3,8 @@ import { Button, Form } from "react-bootstrap";
 import TilesDataService from "../Services/TilesData.service";
 
 const TileUpdateForm = (props) => {
-  const [launchDate, setLaunchDate] = useState("");
-  const [status, setStatus] = useState("");
+  const [launchDate, setLaunchDate] = useState(props.props.tile.launchDate);
+  const [status, setStatus] = useState(props.props.tile.status);
 
   const handleSubmit = async (id) => {
     const data = { launchDate: launchDate, status: status };
@@ -18,7 +18,7 @@ const TileUpdateForm = (props) => {
         <Form.Control
           name="launch-date"
           type="date"
-          defaultValue={props.props.tile.launchDate}
+          defaultValue={launchDate}
           onChange={(e) => setLaunchDate(e.target.value)}
         />
       </Form.Group>
@@ -28,7 +28,7 @@ const TileUpdateForm = (props) => {
         <Form.Control
           name="status"
           as="select"
-          defaultValue={props.props.tile.status}
+          defaultValue={status}
           onChange={(e) => setStatus(e.target.value)}
         >
           <option value="">-- Choose an option --</option>

@@ -11,7 +11,7 @@ const DeleteTileModal = (props) => {
   const handleDeletion = async (id) => {
     await TilesDataService.deleteTile(id);
     setShow(false);
-    props.props.getTilesData();
+    props.props.getAllData();
   };
 
   return (

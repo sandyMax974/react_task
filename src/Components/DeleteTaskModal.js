@@ -11,9 +11,10 @@ const DeleteTaskModal = (props) => {
   const handleDeletion = async (id) => {
     await TasksDataService.deleteTask(id);
     setShow(false);
-    props.getTasksList();
+    props.props.getAllData();
   };
 
+  // console.log(props.props);
   return (
     <>
       <Button variant="outline-danger" size="sm" onClick={handleShow}>
