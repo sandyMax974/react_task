@@ -4,7 +4,6 @@ import DeleteTaskModal from "../Components/DeleteTaskModal";
 import UpdateTaskModal from "../Components/UpdateTaskModal";
 
 const TasksBoard = (props) => {
-  // console.log(props);
   return (
     <>
       <Carousel interval={null}>

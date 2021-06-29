@@ -14,7 +14,6 @@ const DeleteTaskModal = (props) => {
     props.props.getAllData();
   };
 
-  // console.log(props.props);
   return (
     <>
       <Button variant="outline-danger" size="sm" onClick={handleShow}>

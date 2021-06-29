@@ -3,7 +3,14 @@ import TilesDataService from "../Services/TilesData.service";
 import TasksDataService from "../Services/Tasks.Data.Service";
 import Tile from "./Tile";
 import AddTileModal from "../Components/AddTileModal";
-import { Button, ButtonGroup, Container, Row, Col } from "react-bootstrap";
+import {
+  Button,
+  ButtonGroup,
+  Container,
+  Row,
+  Col,
+  Spinner,
+} from "react-bootstrap";
 
 export default class TilesBoard extends Component {
   constructor(props) {
@@ -11,7 +18,7 @@ export default class TilesBoard extends Component {
     this.state = {
       tiles: [],
       tasks: [],
-      isFetching: false, //might use to add a spinner
+      isFetching: false,
     };
   }
 
@@ -42,7 +49,6 @@ export default class TilesBoard extends Component {
   };
 
   render() {
-    // console.log(this.state.tasks);
     return (
       <div>
         <h1>
@@ -79,7 +85,18 @@ export default class TilesBoard extends Component {
           Reset
         </Button>
         <hr />
-        <p>{this.state.isFetching === true ? "Fetching data..." : ""}</p>
+        <p>
+          {this.state.isFetching === true ? (
+            <div>
+              <Spinner animation="border" role="status">
+                <span className="sr-only">Loading data...</span>
+              </Spinner>
+              <p>Loading data...</p>
+            </div>
+          ) : (
+            <div></div>
+          )}
+        </p>
         <Container>
           <Row className="show-grid">
             {this.state.tiles &&
