@@ -16,7 +16,10 @@ export default class TilesBoard extends Component {
   getTileData = async () => {
     this.setState({ ...this.state, isFetching: true });
     const tilesListFromDatabase = await TilesDataService.getAllTiles();
-    this.setState({ tiles: tilesListFromDatabase.data, isFetching: false });
+    this.setState({
+      tiles: tilesListFromDatabase.data,
+      isFetching: false,
+    });
   };
 
   getFilterTileList = (status) => {
@@ -35,7 +38,6 @@ export default class TilesBoard extends Component {
   };
 
   render() {
-    console.log("Tileboard render");
     return (
       <div>
         <h1>
