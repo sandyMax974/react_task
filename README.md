@@ -33,8 +33,8 @@ We want you to expand the application by creating a simple React frontend which 
 
 App runs on `http://localhost:3000/`
 
-[Demo Link (Brave browser)](https://youtu.be/Io1WwkPkE44)
-[Demo Link (Chrome browser)](https://youtu.be/n1R6osZ9UAU)
+* [Demo Link (Brave browser)](https://youtu.be/Io1WwkPkE44)
+* [Demo Link (Chrome browser)](https://youtu.be/n1R6osZ9UAU)
 
 #### Getting Started with Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
